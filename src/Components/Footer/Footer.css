@@ -1,0 +1,29 @@
+.footermain{
+    width:100%;
+    height: 80px;
+    background-color: cadetblue;
+    color: black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+
+}
+
+.footersecond{
+    text-align: center;
+    padding-top: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1px;
+    
+
+}
+
+.heading22{
+    margin-top: -9px;
+    font-weight: 600;
+    font-size: 13px;
+
+}
+.heading223{
+    font-size: 17px;
+
+}

@@ -1,0 +1,27 @@
+.dashboarddata{
+    min-height: 561px;
+    background-color: antiquewhite;
+}
+
+.tbl{
+    padding-top: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+
+}
+.table{
+    /* border: 1px solid black; */
+    padding:10px;
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+
+}
+
+@media (min-width: 801px) {
+    .tbl {
+      width: 1000px;
+      /* text-align: center; */
+      margin: 0 auto; 
+    }
+  }
