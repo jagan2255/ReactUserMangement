@@ -43,17 +43,26 @@ function App() {
     }
   };
 
+  const LoginRoute = ({ element }) => {
+    if (isTokenCheckComplete) {
+      return isLoggedIn ? <Navigate to="/dashboard" /> : element;
+    } else {
+      return null;
+    }
+  };
+
   return (
     <>
       <Routes>
 
-        <Route path="/" element={<PrivateRoute element={<Dashboard />} />} />
+        <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} />
         <Route path='/restpassword' element={<PrivateRoute element={<ResetPassword />} />} />
 
 
         <Route path='/login' element={<Login />} />
         <Route path='/signup' element={<Signup />} />
         <Route path='/forgetpassword' element={<Forgetpassword />} />
+        <Route path='/' element={<LoginRoute element={<Login />} />} />
 
 
       </Routes>

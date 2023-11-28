@@ -23,28 +23,24 @@ function Signup() {
 
     const navigate = useNavigate();
 
-    //Validate Email
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
         setEmailError('');
         setSignupError('')
     };
 
-    //Validate Password
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
         setPasswordError('');
         setSignupError('')
     };
 
-    //Validate Name
     const handleuserNameChange = (e) => {
         setUsername(e.target.value);
         setUsernameError('');
         setSignupError('')
     };
 
-    //Validate Terms and Condition
     const handleTermConditionChange = (e) => {
         setIsChecked(e.target.checked);
         setSignupError('');

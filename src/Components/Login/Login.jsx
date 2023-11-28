@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 import './Login.css';
-import { Link , useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { apiurl } from '../Apiconfig/Apiconfig';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { setData } from '../../redux/userReduser';
+
 
 
 
@@ -17,15 +20,19 @@ function Login() {
 
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+  const userdata = useSelector((state) => state.userData);
 
-  //Check Error In Email Field
+
+  console.log({ userdata: userdata })
+
+
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
     setEmailError('');
     setLoginError('')
   };
 
-  //Check Error In Password Field
   const handlePasswordChange = (e) => {
     setPassword(e.target.value);
     setPasswordError('');
@@ -33,23 +40,19 @@ function Login() {
   };
 
 
-  //SignIn Handle
   const signin = async (e) => {
     e.preventDefault()
 
-    // Validate email
     if (!(email.trim())) {
       setEmailError('Please enter your email.');
       return;
     }
 
-    // Validate password
     if (!password) {
       setPasswordError('Please enter your Password.');
       return;
     }
 
-    //Calling LogIn API
     await axios.post(`${apiurl}/auth/login/`, {
       username: email,
       password: password,
@@ -57,22 +60,20 @@ function Login() {
       .then((res) => {
         console.log(res)
 
-        //Data Present In DB Execute This
         if (res?.data?.token) {
           var token = res?.data?.token
           var username = res?.data?.name;
           var email = res?.data?.username
 
-          //Save Refresh and Access Token to LocalStoreage
           localStorage.setItem("token", token)
           localStorage.setItem("username", username)
-          localStorage.setItem("email",email)
-           window.location.replace("/")
+          localStorage.setItem("email", email)
 
-          navigate("/")
+          dispatch(setData({ token: token, username: username, email: email }))
+          window.location.replace("/")
+          navigate("/dashboard")
 
 
-          //User Data Not Found in DB
         } else {
           setLoginError("Error in Login")
         }
@@ -108,13 +109,13 @@ function Login() {
 
           </div>
           <div className='d-flex justify-content-around'>
-          <div className="mb-3 form-check">
-            <input type="checkbox" className="form-check-input" id="exampleCheck1" />
-            <label className="form-check-label" for="exampleCheck1">Remember me</label>
-          </div>
-          <div>
-          <p><Link to="/forgetpassword">Forget password</Link></p>
-          </div>
+            <div className="mb-3 form-check">
+              <input type="checkbox" className="form-check-input" id="exampleCheck1" />
+              <label className="form-check-label" for="exampleCheck1">Remember me</label>
+            </div>
+            <div>
+              <p><Link to="/forgetpassword">Forget password</Link></p>
+            </div>
           </div>
           <div className='d-grid'>
             <button type="submit" className="btn btn-primary">Login</button>

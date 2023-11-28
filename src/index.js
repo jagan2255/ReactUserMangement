@@ -10,14 +10,20 @@ import {
 
 }
   from 'react-router-dom';
+import { store } from "../src/redux/store"
+import { Provider } from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
   <BrowserRouter>
-    <Header />
-    <App />
-    <Footer />
+    <Provider store={store}>
+
+      <Header />
+      <App />
+      <Footer />
+
+    </Provider>
   </BrowserRouter>
 
 

@@ -24,7 +24,6 @@ function Forgetpassword() {
     const navigate = useNavigate();
 
 
-    //Check Error In Email Field
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
         setEmailError('');
@@ -46,17 +45,14 @@ function Forgetpassword() {
 
 
 
-    //SignIn Handle
     const resetpassword = async (e) => {
         e.preventDefault()
 
-        // Validate email
         if (!(email.trim())) {
             setEmailError('Please enter your email.');
             return;
         }
 
-        //Calling LogIn API
         await axios.post(`${apiurl}/auth/request-reset-password/`, {
             username: email,
         })

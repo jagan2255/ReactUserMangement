@@ -1,6 +1,8 @@
 import React from 'react';
 import "./Header.css";
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
+
 
 
 
@@ -11,24 +13,23 @@ function Header() {
     var token = localStorage.getItem("token")
     var name = localStorage.getItem("username")
 
-    //Logout Handle
+    const userdata = useSelector((state) => state.userData);
+    console.log({ userdata: userdata })
+
     const logoutuser = () => {
         localStorage.clear()
         window.location.replace("/")
     }
 
-    //Login Handle
     const loginuser = () => {
         navigate("/login")
     }
-    //Signup Handle
     const logout = () => {
         navigate("/signup")
     }
 
 
 
-    //Redirect to Home Page
     const home = () => {
 
     }

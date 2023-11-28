@@ -22,26 +22,26 @@ function Dashboard() {
 
 
   const fetchData = async () => {
-    try{
-    await axios.get(`${apiurl}/users/?page=${pagenum}`, config).then((res) => {
-      if (res) {
-        console.log(res?.data)
-        setUserdata((prevData) => [...prevData, ...res?.data?.results])
-        console.log(res?.data?.results?.length)
+    try {
+      await axios.get(`${apiurl}/users/?page=${pagenum}`, config).then((res) => {
+        if (res) {
+          console.log(res?.data)
+          setUserdata((prevData) => [...prevData, ...res?.data?.results])
+          console.log(res?.data?.results?.length)
 
-        if (res?.data?.results?.length < 10) {
+          if (res?.data?.results?.length < 10) {
 
-          setHasMore(false);
-        } else {
-          setPagenum(pagenum + 1);
-          setHasMore(true);
+            setHasMore(false);
+          } else {
+            setPagenum(pagenum + 1);
+            setHasMore(true);
+          }
         }
-      }
-    })
-  }catch(err){
-    console.log(err.message)
+      })
+    } catch (err) {
+      console.log(err.message)
+    }
   }
-}
 
   useEffect(() => {
 
@@ -78,7 +78,7 @@ function Dashboard() {
 
             </tbody>
           </table>
-          </div>
+        </div>
       </InfiniteScroll>
 
     </div>
